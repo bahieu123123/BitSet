@@ -5,10 +5,10 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BitSetTest {
-    int size = 17;
+    int size = 25;
     BitSet bitSet1 = new BitSet(size);
     BitSet bitSet2 = new BitSet(size);
-    int newsize = 8;
+    int newsize = 16;
     BitSet newBitSet1 = new BitSet(newsize);
     BitSet newBitSet2 = new BitSet(newsize);
 
@@ -21,7 +21,7 @@ class BitSetTest {
             if (i % 5 == 0 && i < newsize)
                 bitSet2.addindex(i);
         }
-        assertEquals(bitSet1, bitSet1.OR(bitSet2));
+        assertEquals(bitSet2, bitSet1.OR(bitSet2));
     }
 
     @Test
@@ -38,7 +38,9 @@ class BitSetTest {
 
     @Test
     public void addindex() {
+        bitSet1.addindex(1);
         bitSet1.addindex(4);
+        bitSet1.addindex(5);
         bitSet1.addindex(9);
     }
 
