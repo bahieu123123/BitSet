@@ -1,6 +1,9 @@
-import static java.lang.Integer.max;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public class BitSet {
+
+public class BitSet{
     private byte[] bits;
     private int size;
 
@@ -14,7 +17,7 @@ public class BitSet {
     @Override
     public String toString() {
         StringBuilder SB = new StringBuilder();
-        SB.append("{");
+        SB.append("[");
         for (int i = 0; i < this.size; i++) {
             int indexofBitSet = i / 8;
             if (((bits[indexofBitSet] >> (8 * (indexofBitSet + 1) - i - 1)) & 1) == 1) {
@@ -22,9 +25,18 @@ public class BitSet {
             }
         }
         SB.delete(SB.length() - 2, SB.length());
-        SB.append("}");
+        SB.append("]");
         return SB.toString();
     }
+
+
+    public int getsize() {
+        return size;
+    }
+    public int hashCode() {
+        return Arrays.hashCode(bits) + size;
+    }
+
 
 
     public void addindex(int index) {
@@ -35,6 +47,7 @@ public class BitSet {
         bits[indexofBitSet] = number;
     }
 
+
     public void removeindex(int index) {
         if (index < 0 && index >= size) throw new IndexOutOfBoundsException();
         int indexofBitSet = index / 8;
@@ -42,6 +55,7 @@ public class BitSet {
         number = (byte) (number ^ (1 << (8 * (indexofBitSet + 1) - index - 1)));
         bits[indexofBitSet] = number;
     }
+
 
     public BitSet OR(BitSet other) {
         if (this.size != other.size) throw new NullPointerException();
@@ -51,6 +65,7 @@ public class BitSet {
         return this;
     }
 
+
     public BitSet AND(BitSet other) {
         if (this.size != other.size) throw new NullPointerException();
         for (int i = 0; i < this.bits.length; i++) {
@@ -58,10 +73,14 @@ public class BitSet {
         }
         return this;
     }
-    public BitSet COMLEMENT(){
-        for (int i = 0; i < this.bits.length; i++){
+
+
+    public BitSet COMLEMENT() {
+        for (int i = 0; i < this.bits.length; i++) {
             this.bits[i] = (byte) ~this.bits[i];
         }
         return this;
     }
 }
+
+

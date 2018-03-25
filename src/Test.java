@@ -5,7 +5,7 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BitSetTest {
-    int size = 25;
+    int size = 24;
     BitSet bitSet1 = new BitSet(size);
     BitSet bitSet2 = new BitSet(size);
     int newsize = 16;
@@ -18,17 +18,17 @@ class BitSetTest {
         for (int i = 0; i < size; i++) {
             if (i % 2 == 0)
                 bitSet1.addindex(i);
-            if (i % 5 == 0 && i < newsize)
+            if (i % 3 == 0 && i < newsize)
                 bitSet2.addindex(i);
         }
-        assertEquals(bitSet2, bitSet1.OR(bitSet2));
+        assertEquals(bitSet1, bitSet1.OR(bitSet1));
     }
 
     @Test
     public void AND() {
         for (int i = 0; i < size; i++) {
-            if (i < 10) bitSet1.addindex(i);
-            if (i % 3 ==0) bitSet2.addindex(i);
+            if (i % 2 == 0) bitSet1.addindex(i);
+            if (i % 3 == 0) bitSet2.addindex(i);
         }
 
         assertEquals(bitSet1, bitSet1.AND(bitSet2));
@@ -64,5 +64,5 @@ class BitSetTest {
 
         assertEquals(bitSet1, bitSet1.COMLEMENT());
     }
-
+    
 }
