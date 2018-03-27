@@ -21,7 +21,7 @@ public class BitSet{
         for (int i = 0; i < this.size; i++) {
             int indexofBitSet = i / 8;
             if (((bits[indexofBitSet] >> (8 * (indexofBitSet + 1) - i - 1)) & 1) == 1) {
-                SB.append(i).append(", ");
+                SB.append(i).append("; ");
             }
         }
         SB.delete(SB.length() - 2, SB.length());
