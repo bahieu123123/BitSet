@@ -29,16 +29,6 @@ public class BitSet{
         return SB.toString();
     }
 
-
-    public int getsize() {
-        return size;
-    }
-    public int hashCode() {
-        return Arrays.hashCode(bits) + size;
-    }
-
-
-
     public void addindex(int index) {
         if (index < 0 && index >= size) throw new IndexOutOfBoundsException();
         int indexofBitSet = index / 8;

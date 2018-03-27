@@ -64,5 +64,5 @@ class BitSetTest {
 
         assertEquals(bitSet1, bitSet1.COMLEMENT());
     }
-    
+
 }
