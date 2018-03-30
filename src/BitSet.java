@@ -3,7 +3,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 
-public class BitSet{
+public class BitSet {
     private byte[] bits;
     private int size;
 
@@ -71,6 +71,28 @@ public class BitSet{
         }
         return this;
     }
+
+    public int addmassive(int[] indexs) {
+        int result = 0;
+        for (int index : indexs) {
+            int indexofBitSet = index / 8;
+            if (((bits[indexofBitSet] >> (8 * (indexofBitSet + 1) - index - 1)) & 1) != 1) {
+                result++;
+            }
+        }
+        return result;
+    }
+    public int removemassive(int[] indexs){
+        int result =0;
+        for (int index : indexs){
+            int indexofBitSet=index/8;
+            if (((bits[indexofBitSet] >> (8 * (indexofBitSet + 1) - index - 1)) & 1) == 1) {
+                result++;
+            }
+        }
+        return result;
+    }
+
 }
 
 

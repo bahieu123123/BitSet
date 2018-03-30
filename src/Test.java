@@ -64,5 +64,20 @@ class BitSetTest {
 
         assertEquals(bitSet1, bitSet1.COMLEMENT());
     }
+    @Test
+    public void addMassive() {
+        bitSet1.addindex(2);
+        bitSet1.addindex(7);
+        assertEquals(3, bitSet1.addmassive(new int[]{1, 7, 5, 3}));
+        assertEquals(2, bitSet1.addmassive(new int[]{5, 10}));
+    }
+    @Test
+    public void removeMassive() {
+        bitSet1.addindex(2);
+        bitSet1.addindex(7);
+        assertEquals(2, bitSet1.removemassive(new int[]{2,3,5,6,7}));
+        assertEquals(1, bitSet1.removemassive(new int[]{5,4,3,2,1}));
+
+    }
 
 }
