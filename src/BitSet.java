@@ -60,6 +60,26 @@ public class BitSet {
         return false;
     }
 
+    public int addMassive(int[] indexs) {
+        int result = 0;
+        for (int index : indexs) {
+            if (addindex(index)) {
+                result++;
+            }
+        }
+        return result;
+    }
+
+    public int removeMassive(int[] indexs) {
+        int result = 0;
+        for (int index : indexs) {
+            if (removeindex(index)) {
+                result++;
+            }
+        }
+        return result;
+    }
+
 
     public BitSet OR(BitSet other) {
         if (this.size != other.size) throw new IllegalArgumentException();
@@ -87,25 +107,6 @@ public class BitSet {
         return this;
     }
 
-    public int addMassive(int[] indexs) {
-        int result = 0;
-        for (int index : indexs) {
-            if (addindex(index)) {
-                result++;
-            }
-        }
-        return result;
-    }
-
-    public int removeMassive(int[] indexs) {
-        int result = 0;
-        for (int index : indexs) {
-            if (removeindex(index)) {
-                result++;
-            }
-        }
-        return result;
-    }
 
 }
 
