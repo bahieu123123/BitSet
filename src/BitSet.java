@@ -4,6 +4,7 @@ import java.util.NoSuchElementException;
 
 
 public class BitSet {
+    // &, |, ~, <<, >>: Java bit operations
     private byte[] bits;
     private int size;
 
@@ -13,6 +14,7 @@ public class BitSet {
         if (size % 8 == 0) this.bits = new byte[size / 8];
         else this.bits = new byte[size / 8 + 1];
     }
+
     public boolean check(int element) {
         if (element < 0 && element >= size) throw new IndexOutOfBoundsException();
 
@@ -26,8 +28,8 @@ public class BitSet {
         StringBuilder SB = new StringBuilder();
         SB.append("{");
         for (int i = 0; i < this.size; i++) {
-            if (this.check(i)==true){
-               SB.append(i).append(", ");
+            if (this.check(i) == true) {
+                SB.append(i).append(", ");
             }
         }
         SB.delete(SB.length() - 2, SB.length());
@@ -69,7 +71,7 @@ public class BitSet {
 
 
     public BitSet AND(BitSet other) {
-        if (this.size != other.size) throw new NullPointerException();
+        if (this.size != other.size) throw new IllegalArgumentException();
 
         for (int i = 0; i < this.bits.length; i++) {
             this.bits[i] = (byte) (this.bits[i] & other.bits[i]);
@@ -88,16 +90,17 @@ public class BitSet {
     public int addMassive(int[] indexs) {
         int result = 0;
         for (int index : indexs) {
-            if (addindex(index)){
+            if (addindex(index)) {
                 result++;
             }
         }
         return result;
     }
-    public int removeMassive(int[] indexs){
-        int result =0;
-        for (int index : indexs){
-            if (removeindex(index)){
+
+    public int removeMassive(int[] indexs) {
+        int result = 0;
+        for (int index : indexs) {
+            if (removeindex(index)) {
                 result++;
             }
         }

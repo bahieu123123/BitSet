@@ -47,7 +47,6 @@ class BitSetTest {
     }
 
 
-
     @Test
     public void addindex() {
         bitSet1.addindex(2);
@@ -65,6 +64,7 @@ class BitSetTest {
         assertTrue(bitSet1.removeindex(7));
         assertFalse(bitSet1.removeindex(10));
     }
+
     @Test
     public void complement() {
         for (int i = 0; i < newsize; i++) {
@@ -74,12 +74,13 @@ class BitSetTest {
 
         assertEquals(newBitSet1, newBitSet1.COMLEMENT());
         for (int i = 0; i < size; i++) {
-            if(i < 10) bitSet1.addindex(i);
+            if (i < 10) bitSet1.addindex(i);
             else bitSet2.addindex(i);
         }
 
         assertEquals(bitSet1, bitSet1.COMLEMENT());
     }
+
     @Test
     public void addMassive() {
         bitSet1.addindex(2);
@@ -87,6 +88,7 @@ class BitSetTest {
         assertEquals(3, bitSet1.addMassive(new int[]{2, 3, 5, 8}));
         assertEquals(1, bitSet1.addMassive(new int[]{7, 10}));
     }
+
     @Test
     public void removeMassive() {
         bitSet1.addindex(3);
