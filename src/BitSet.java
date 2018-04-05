@@ -1,7 +1,4 @@
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-
+import java.util.*;
 
 public class BitSet {
     // &, |, ~, <<, >>: Java bit operations
@@ -15,6 +12,7 @@ public class BitSet {
         else this.bits = new byte[size / 8 + 1];
     }
 
+    //Проверка принадлежности элемента множеству
     public boolean check(int element) {
         if (element < 0 && element >= size) throw new IndexOutOfBoundsException();
 
@@ -37,6 +35,7 @@ public class BitSet {
         return SB.toString();
     }
 
+    //Добавление заданного элемента
     public boolean addindex(int index) {
         if (!check(index)) {
             int indexofBitSet = index / 8;
@@ -48,7 +47,7 @@ public class BitSet {
         return false;
     }
 
-
+    //Удаление  заданного элемента
     public boolean removeindex(int index) {
         if (check(index)) {
             int indexofBitSet = index / 8;
@@ -60,6 +59,7 @@ public class BitSet {
         return false;
     }
 
+    //Добавление массива элементов
     public int addMassive(int[] indexs) {
         int result = 0;
         for (int index : indexs) {
@@ -70,6 +70,7 @@ public class BitSet {
         return result;
     }
 
+    //Удаление массива элементов
     public int removeMassive(int[] indexs) {
         int result = 0;
         for (int index : indexs) {
@@ -80,7 +81,7 @@ public class BitSet {
         return result;
     }
 
-
+    //Операции:объединение
     public BitSet OR(BitSet other) {
         if (this.size != other.size) throw new IllegalArgumentException();
         for (int i = 0; i < this.bits.length; i++) {
@@ -90,6 +91,7 @@ public class BitSet {
     }
 
 
+    //Операции:пересечение
     public BitSet AND(BitSet other) {
         if (this.size != other.size) throw new IllegalArgumentException();
 
@@ -100,6 +102,7 @@ public class BitSet {
     }
 
 
+    //Операции:дополнение
     public BitSet COMLEMENT() {
         for (int i = 0; i < this.bits.length; i++) {
             this.bits[i] = (byte) ~this.bits[i];
