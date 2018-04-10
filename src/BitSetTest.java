@@ -26,24 +26,24 @@ class BitSetTest {
 
 
     @Test
-    public void OR() {
+    public void or() {
         for (int i = 0; i < size; i++) {
             if (i % 2 == 0)
                 bitSet1.addindex(i);
             if (i % 3 == 0 && i < newsize)
                 bitSet2.addindex(i);
         }
-        assertEquals(bitSet1, bitSet1.OR(bitSet2));
+        assertEquals(bitSet1, bitSet1.or(bitSet2));
     }
 
     @Test
-    public void AND() {
+    public void and() {
         for (int i = 0; i < size; i++) {
             if (i < 6) bitSet1.addindex(i);
             if (i < 9) bitSet2.addindex(i);
         }
 
-        assertEquals(bitSet1, bitSet1.AND(bitSet2));
+        assertEquals(bitSet1, bitSet1.and(bitSet2));
     }
 
 
@@ -72,13 +72,13 @@ class BitSetTest {
             else newBitSet2.addindex(i);
         }
 
-        assertEquals(newBitSet1, newBitSet1.COMLEMENT());
+        assertEquals(newBitSet1, newBitSet1.comlement());
         for (int i = 0; i < size; i++) {
             if (i < 10) bitSet1.addindex(i);
             else bitSet2.addindex(i);
         }
 
-        assertEquals(bitSet1, bitSet1.COMLEMENT());
+        assertEquals(bitSet1, bitSet1.comlement());
     }
 
     @Test

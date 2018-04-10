@@ -82,7 +82,7 @@ public class BitSet {
     }
 
     //Операции:объединение
-    public BitSet OR(BitSet other) {
+    public BitSet or(BitSet other) {
         if (this.size != other.size) throw new IllegalArgumentException();
         for (int i = 0; i < this.bits.length; i++) {
             this.bits[i] = (byte) (this.bits[i] | other.bits[i]);
@@ -92,7 +92,7 @@ public class BitSet {
 
 
     //Операции:пересечение
-    public BitSet AND(BitSet other) {
+    public BitSet and(BitSet other) {
         if (this.size != other.size) throw new IllegalArgumentException();
 
         for (int i = 0; i < this.bits.length; i++) {
@@ -103,14 +103,12 @@ public class BitSet {
 
 
     //Операции:дополнение
-    public BitSet COMLEMENT() {
+    public BitSet comlement() {
         for (int i = 0; i < this.bits.length; i++) {
             this.bits[i] = (byte) ~this.bits[i];
         }
         return this;
     }
-
-
 }
 
 
