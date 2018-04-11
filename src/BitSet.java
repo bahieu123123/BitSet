@@ -3,18 +3,22 @@ import java.util.*;
 public class BitSet {
     // &, |, ~, <<, >>: Java bit operations
     private byte[] bits;
-    private int size;
+    private int cardinal;
 
-    public BitSet(int size) {
-        if (size <= 0) throw new IllegalArgumentException();
-        else this.size = size;
-        if (size % 8 == 0) this.bits = new byte[size / 8];
-        else this.bits = new byte[size / 8 + 1];
+    public BitSet(int cardinal) {
+        if (cardinal <= 0) throw new IllegalArgumentException();
+        else this.cardinal = cardinal;
+        if (cardinal % 8 == 0) this.bits = new byte[cardinal / 8];
+        else this.bits = new byte[cardinal / 8 + 1];
     }
 
-    //Проверка принадлежности элемента множеству
+    /**
+     * check() выполняет задачу:Проверка принадлежности элемента множеству
+     * @param element
+     * @return
+     */
     public boolean check(int element) {
-        if (element < 0 && element >= size) throw new IndexOutOfBoundsException();
+        if (element < 0 && element >= cardinal) throw new IndexOutOfBoundsException();
 
         int indexOfBitSet = element / 8;
         byte numb = bits[indexOfBitSet];
@@ -22,10 +26,30 @@ public class BitSet {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj instanceof BitSet) {
+            BitSet other = (BitSet) obj;
+            if (this.cardinal != other.cardinal) return false;
+            for (int i = 0; i < this.bits.length; i++) {
+                if (this.bits[i] != other.bits[i]) return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(bits) + cardinal;
+    }
+
+
+    @Override
     public String toString() {
         StringBuilder SB = new StringBuilder();
         SB.append("{");
-        for (int i = 0; i < this.size; i++) {
+        for (int i = 0; i < this.cardinal; i++) {
             if (this.check(i) == true) {
                 SB.append(i).append(", ");
             }
@@ -35,55 +59,79 @@ public class BitSet {
         return SB.toString();
     }
 
-    //Добавление заданного элемента
-    public boolean addindex(int index) {
-        if (!check(index)) {
-            int indexofBitSet = index / 8;
+    public int getCardinal() {
+        return cardinal;
+    }
+
+    /**
+     * addElement выполняет задачу:Добавление заданного элемента
+     * @param element
+     * @return
+     */
+    public boolean addElement(int element) {
+        if (!check(element)) {
+            int indexofBitSet = element / 8;
             byte number = bits[indexofBitSet];
-            number = (byte) (number | (1 << (8 * (indexofBitSet + 1) - index - 1)));
+            number = (byte) (number | (1 << (8 * (indexofBitSet + 1) - element - 1)));
             bits[indexofBitSet] = number;
             return true;
         }
         return false;
     }
 
-    //Удаление  заданного элемента
-    public boolean removeindex(int index) {
-        if (check(index)) {
-            int indexofBitSet = index / 8;
+    /**
+     * removeElement выполняет задачу:Удаление  заданного элемента
+     * @param element
+     * @return
+     */
+    public boolean removeElement(int element) {
+        if (check(element)) {
+            int indexofBitSet = element / 8;
             byte number = bits[indexofBitSet];
-            number = (byte) (number ^ (1 << (8 * (indexofBitSet + 1) - index - 1)));
+            number = (byte) (number ^ (1 << (8 * (indexofBitSet + 1) - element - 1)));
             bits[indexofBitSet] = number;
             return true;
         }
         return false;
     }
 
-    //Добавление массива элементов
-    public int addMassive(int[] indexs) {
+    /**
+     * addMassive выполняет задачу:Добавление массива элементов
+     * @param elements
+     * @return
+     */
+    public int addMassive(int[] elements) {
         int result = 0;
-        for (int index : indexs) {
-            if (addindex(index)) {
+        for (int element : elements) {
+            if (addElement(element)) {
                 result++;
             }
         }
         return result;
     }
 
-    //Удаление массива элементов
-    public int removeMassive(int[] indexs) {
+    /**
+     * removeMassive выполняет задачу:Удаление массива элементов
+     * @param elements
+     * @return
+     */
+    public int removeMassive(int[] elements) {
         int result = 0;
-        for (int index : indexs) {
-            if (removeindex(index)) {
+        for (int element : elements) {
+            if (removeElement(element)) {
                 result++;
             }
         }
         return result;
     }
 
-    //Операции:объединение
+    /**
+     * or() выполняет oперации объединение
+     * @param other
+     * @return
+     */
     public BitSet or(BitSet other) {
-        if (this.size != other.size) throw new IllegalArgumentException();
+        if (this.cardinal != other.cardinal) throw new IllegalArgumentException();
         for (int i = 0; i < this.bits.length; i++) {
             this.bits[i] = (byte) (this.bits[i] | other.bits[i]);
         }
@@ -91,9 +139,13 @@ public class BitSet {
     }
 
 
-    //Операции:пересечение
+    /**
+     * and() выполняет oперации пересечение
+     * @param other
+     * @return
+     */
     public BitSet and(BitSet other) {
-        if (this.size != other.size) throw new IllegalArgumentException();
+        if (this.cardinal != other.cardinal) throw new IllegalArgumentException();
 
         for (int i = 0; i < this.bits.length; i++) {
             this.bits[i] = (byte) (this.bits[i] & other.bits[i]);
@@ -102,7 +154,10 @@ public class BitSet {
     }
 
 
-    //Операции:дополнение
+    /**
+     * comlement() выполняет oперации дополнение
+     * @return
+     */
     public BitSet comlement() {
         for (int i = 0; i < this.bits.length; i++) {
             this.bits[i] = (byte) ~this.bits[i];
