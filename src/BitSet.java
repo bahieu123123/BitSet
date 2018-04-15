@@ -6,7 +6,7 @@ public class BitSet {
     private int cardinal;
 
     public BitSet(int cardinal) {
-        if (cardinal <= 0) throw new IllegalArgumentException();
+        if (cardinal <= 0) throw new NullPointerException();
         else this.cardinal = cardinal;
         if (cardinal % 8 == 0) this.bits = new byte[cardinal / 8];
         else this.bits = new byte[cardinal / 8 + 1];

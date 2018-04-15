@@ -8,6 +8,7 @@ class BitSetTest {
     int cardinal = 24;
     BitSet bitSet1 = new BitSet(cardinal);
     BitSet bitSet2 = new BitSet(cardinal);
+    BitSet bitSet3 = new BitSet(cardinal);
     int newcardinal = 16;
     BitSet newBitSet1 = new BitSet(newcardinal);
     BitSet newBitSet2 = new BitSet(newcardinal);
@@ -33,22 +34,23 @@ class BitSetTest {
     @Test
     public void or() {
         for (int i = 0; i < cardinal; i++) {
-            if (i % 2 == 0)
+            if (i % 3 == 0)
                 bitSet1.addElement(i);
             if (i % 2 == 0 && i < newcardinal)
                 bitSet2.addElement(i);
         }
-        assertEquals(bitSet1, bitSet1.or(bitSet2));
+        bitSet3.addMassive(new int[]{0, 2, 3, 4, 6, 8, 9, 10, 12, 14, 15, 18, 21});
+        assertEquals(bitSet3, bitSet1.or(bitSet2));
     }
 
     @Test
     public void and() {
         for (int i = 0; i < cardinal; i++) {
-            if (i < 6) bitSet1.addElement(i);
-            if (i < 9) bitSet2.addElement(i);
+            if (i < 15 && i%2==0) bitSet1.addElement(i);
+            if (i < 10 && i%3==0) bitSet2.addElement(i);
         }
-
-        assertEquals(bitSet1, bitSet2.and(bitSet1));
+        bitSet3.addMassive(new int[]{0, 6});
+        assertEquals(bitSet3, bitSet2.and(bitSet1));
     }
 
 
