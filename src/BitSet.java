@@ -6,7 +6,7 @@ public class BitSet {
     private int cardinal;
 
     public BitSet(int cardinal) {
-        if (cardinal <= 0) throw new NullPointerException();
+        if (cardinal < 0) throw new NullPointerException();
         else this.cardinal = cardinal;
         if (cardinal % 8 == 0) this.bits = new byte[cardinal / 8];
         else this.bits = new byte[cardinal / 8 + 1];
@@ -50,7 +50,7 @@ public class BitSet {
         StringBuilder SB = new StringBuilder();
         SB.append("{");
         for (int i = 0; i < this.cardinal; i++) {
-            if (this.check(i) == true) {
+            if (this.check(i)) {
                 SB.append(i).append(", ");
             }
         }
