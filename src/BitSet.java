@@ -1,12 +1,12 @@
 import java.util.*;
 
-public class BitSet {
+public class BitSet  implements Iterable<Integer>{
     // &, |, ~, <<, >>: Java bit operations
     private byte[] bits;
     private int cardinal;
 
     public BitSet(int cardinal) {
-        if (cardinal < 0) throw new NullPointerException();
+        if (cardinal <= 0) Collections.emptyList();
         else this.cardinal = cardinal;
         if (cardinal % 8 == 0) this.bits = new byte[cardinal / 8];
         else this.bits = new byte[cardinal / 8 + 1];
@@ -163,6 +163,44 @@ public class BitSet {
             this.bits[i] = (byte) ~this.bits[i];
         }
         return this;
+    }
+
+    /**Bonus.
+     * Итератор по множеству.
+     * @return
+     */
+    @Override
+    public Iterator<Integer> iterator() {
+        return new BitSetIterator();
+    }
+
+    private class BitSetIterator implements Iterator<Integer> {
+        private int cursor;
+
+        public BitSetIterator() {
+            cursor = 0;
+        }
+
+        @Override
+        public boolean hasNext() {
+            for (int i = cursor; i < BitSet.this.cardinal; i++) {
+                if (BitSet.this.check(i)) {
+                    return true;
+                }
+                cursor++;
+            }
+            return false;
+        }
+
+        @Override
+        public Integer next(){
+            if (this.hasNext()){
+                int current = cursor;
+                cursor++;
+                return current;
+            }
+            throw new NoSuchElementException();
+        }
     }
 }
 

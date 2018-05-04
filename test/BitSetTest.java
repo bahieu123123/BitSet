@@ -105,5 +105,20 @@ class BitSetTest {
         assertEquals(2, bitSet1.removeMassive(new int[]{7, 5, 2, 3}));
 
     }
+    @Test
+    public void iterator() {
+        int cursor = 0;
+        BitSet ex = new BitSet(10);
+        for (int i = 0; i < ex.getCardinal(); i++) {
+            if (i % 2 == 0) ex.addElement(i);
+        }
+
+        Iterator it = ex.iterator();
+
+        while (it.hasNext()) {
+            assertEquals(cursor, it.next());
+            cursor += 2;
+        }
+    }
 
 }
