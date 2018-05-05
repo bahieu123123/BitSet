@@ -1,3 +1,6 @@
+package Lesson1;
+
+import Lesson1.BitSet;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -6,12 +9,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BitSetTest {
     int cardinal = 24;
-    BitSet bitSet1 = new BitSet(cardinal);
-    BitSet bitSet2 = new BitSet(cardinal);
-    BitSet bitSet3 = new BitSet(cardinal);
+    Lesson1.BitSet bitSet1 = new Lesson1.BitSet(cardinal);
+    Lesson1.BitSet bitSet2 = new Lesson1.BitSet(cardinal);
+    Lesson1.BitSet bitSet3 = new BitSet(cardinal);
     int newcardinal = 16;
-    BitSet newBitSet1 = new BitSet(newcardinal);
-    BitSet newBitSet2 = new BitSet(newcardinal);
+    Lesson1.BitSet newBitSet1 = new Lesson1.BitSet(newcardinal);
+    Lesson1.BitSet newBitSet2 = new Lesson1.BitSet(newcardinal);
 
     @Test
     public void getCardinal() {
@@ -108,7 +111,7 @@ class BitSetTest {
     @Test
     public void iterator() {
         int cursor = 0;
-        BitSet ex = new BitSet(10);
+        Lesson1.BitSet ex = new Lesson1.BitSet(10);
         for (int i = 0; i < ex.getCardinal(); i++) {
             if (i % 2 == 0) ex.addElement(i);
         }

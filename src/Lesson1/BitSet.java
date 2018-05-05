@@ -1,3 +1,5 @@
+package Lesson1;
+
 import java.util.*;
 
 public class BitSet  implements Iterable<Integer>{
