@@ -1,4 +1,4 @@
-# Lesson1.BitSet
+# bitset
 
 Lesson1
 

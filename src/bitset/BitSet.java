@@ -1,4 +1,4 @@
-package Lesson1;
+package bitset;
 
 import java.util.*;
 
@@ -160,7 +160,7 @@ public class BitSet  implements Iterable<Integer>{
      * comlement() выполняет oперации дополнение
      * @return
      */
-    public BitSet comlement() {
+    public BitSet complement() {
         for (int i = 0; i < this.bits.length; i++) {
             this.bits[i] = (byte) ~this.bits[i];
         }

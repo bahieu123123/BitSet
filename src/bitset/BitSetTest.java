@@ -1,20 +1,18 @@
-package Lesson1;
+package bitset;
 
-import Lesson1.BitSet;
 import org.junit.jupiter.api.Test;
-
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class BitSetTest {
     int cardinal = 24;
-    Lesson1.BitSet bitSet1 = new Lesson1.BitSet(cardinal);
-    Lesson1.BitSet bitSet2 = new Lesson1.BitSet(cardinal);
-    Lesson1.BitSet bitSet3 = new BitSet(cardinal);
+    bitset.BitSet bitSet1 = new bitset.BitSet(cardinal);
+    bitset.BitSet bitSet2 = new bitset.BitSet(cardinal);
+    bitset.BitSet bitSet3 = new bitset.BitSet(cardinal);
     int newcardinal = 16;
-    Lesson1.BitSet newBitSet1 = new Lesson1.BitSet(newcardinal);
-    Lesson1.BitSet newBitSet2 = new Lesson1.BitSet(newcardinal);
+    bitset.BitSet newBitSet1 = new bitset.BitSet(newcardinal);
+    bitset.BitSet newBitSet2 = new bitset.BitSet(newcardinal);
 
     @Test
     public void getCardinal() {
@@ -78,17 +76,17 @@ class BitSetTest {
     @Test
     public void complement() {
         for (int i = 0; i < newcardinal; i++) {
-            if (i < 2) newBitSet1.addElement(i);
+            if (i < 6) newBitSet1.addElement(i);
             else newBitSet2.addElement(i);
         }
 
-        assertEquals(newBitSet1, newBitSet1.comlement());
+        assertEquals(newBitSet1, newBitSet2.complement());
         for (int i = 0; i < cardinal; i++) {
-            if (i < 10) bitSet1.addElement(i);
+            if(i < 10) bitSet1.addElement(i);
             else bitSet2.addElement(i);
         }
 
-        assertEquals(bitSet1, bitSet1.comlement());
+        assertEquals(bitSet2, bitSet1.complement());
     }
 
     @Test
@@ -111,7 +109,7 @@ class BitSetTest {
     @Test
     public void iterator() {
         int cursor = 0;
-        Lesson1.BitSet ex = new Lesson1.BitSet(10);
+        bitset.BitSet ex = new bitset.BitSet(10);
         for (int i = 0; i < ex.getCardinal(); i++) {
             if (i % 2 == 0) ex.addElement(i);
         }
